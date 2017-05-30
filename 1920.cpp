@@ -24,7 +24,7 @@ int main()
 {
     ios::sync_with_stdio(0);
 
-    int i, j, n;
+    int i, j, n, m;
     int a[100003];
     int b[100003];
 
@@ -38,22 +38,19 @@ int main()
     sort(a, a + n);
 
 
-    cin >> n;
+    cin >> m;
 
-    for(i = 0; i < n; ++i)
+    for(i = 0; i < m; ++i)
     {
         cin >> b[i];
     }
 
-    for(i = 0; i < n; ++i)
+    for(i = 0; i < m; ++i)
     {
         if(isIn(a, 0, n - 1, b[i]))
             cout << 1 << "\n";
         else
-            if(i == n -1)
-                cout << 0;
-            else
-                cout << 0 << "\n";
+            cout << 0 << "\n";
 
     }
     return 1;

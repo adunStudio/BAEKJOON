@@ -5,20 +5,29 @@
 #include <iostream>
 using namespace std;
 
-int fibonacci(int n)
-{
-    if(n == 0)
-        return 0;
-    else if(n == 1)
-        return 1;
-    else
-        return fibonacci(n -1) + fibonacci(n -2);
-}
-
 int main()
 {
-    int n;
+    long long n, sum = 1, prev = 1;
     cin >> n;
-    cout << fibonacci(n);
+
+    if(n == 0)
+    {
+        cout << 0;
+        return 1;
+    }
+
+    if(n == 1 or n == 2)
+    {
+        cout << 1;
+        return 1;
+    }
+
+    for(int i = 3; i <= n; ++i)
+    {
+        sum += prev;
+        prev = sum - prev;
+    }
+
+    cout << sum;
     return 1;
 }

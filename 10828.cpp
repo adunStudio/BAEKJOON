@@ -1,78 +1,66 @@
-/*
- * 스택
- */
+// cpp
+// 스택
+// https://www.acmicpc.net/problem/10828
 
 #include <iostream>
+#include <stack>
 using namespace std;
-
-typedef int DATA;
-
-struct Stack
-{
-    DATA data[10000];
-    int top = -1;
-};
-
-int sIsEmpty(Stack& s)
-{
-    return s.top == -1;
-}
-
-void sPush(Stack& s, DATA data)
-{
-    s.data[++s.top] = data;
-}
-
-int sSize(Stack& s)
-{
-    return s.top + 1;
-}
-
-DATA sPop(Stack& s)
-{
-    if(!sIsEmpty(s))
-        return s.data[s.top--];
-    else
-        return -1;
-}
-
-DATA sTop(Stack& s)
-{
-    if(!sIsEmpty(s))
-        return s.data[s.top];
-    else
-        return -1;
-}
 
 int main()
 {
-    Stack s;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    stack<int> s;
+
     string command;
-    DATA n;
-    int t;
 
-    cin >> t;
+    int N, X;
+    cin >> N;
 
-    while(t--)
+    while(N--)
     {
         cin >> command;
 
         if(command == "push")
         {
-            cin >> n;
-            sPush(s, n);
+            cin >> X;
+
+            s.push(X);
+        }
+        else if(command == "pop")
+        {
+            if(s.empty())
+            {
+                cout << -1 << endl;
+            }
+            else
+            {
+                cout << s.top() << endl;
+                s.pop();
+            }
+        }
+        else if(command == "size")
+        {
+            cout << s.size() << endl;
+        }
+        else if(command == "empty")
+        {
+            cout << (s.empty() ? 1 : 0) << endl;
         }
         else if(command == "top")
-            cout << sTop(s) << "\n";
-
-        else if(command == "pop")
-            cout << sPop(s) << "\n";
-
-        else if(command == "size")
-            cout << sSize(s) << "\n";
-
-        else if(command == "empty")
-            cout << sIsEmpty(s) << "\n";
+        {
+            if(s.empty())
+            {
+                cout << -1 << endl;
+            }
+            else
+            {
+                cout << s.top() << endl;
+            }
+        }
     }
-    return 1;
+
+    return 0;
 }
